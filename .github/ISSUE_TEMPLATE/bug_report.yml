@@ -1,0 +1,42 @@
+name: "Bug Report"
+description: "Something that doesn't work as expected"
+title: "(short issue description)"
+labels: [bug, needs-triage]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: |
+        Tell us what should happen.
+    validations:
+      required: false
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current behavior
+      description: |
+        Tell us what happens instead of the expected behavior.
+        Include full errors, uncaught exceptions, stack traces, and relevant logs.
+    validations:
+      required: false
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: |
+        Provide a self-contained, concise snippet of code that can be used to reproduce the issue.
+        For more complex issues provide a repo with the smallest sample that reproduces the bug.
+        Avoid including business logic or unrelated code, it makes diagnosis more difficult.
+    validations:
+      required: false

@@ -1,5 +1,7 @@
-package com.turbomates.time.period
+package com.turbomates.time.valiktor
 
+import com.turbomates.time.period.Period
+import com.turbomates.time.period.Range
 import org.valiktor.Constraint
 import org.valiktor.Validator
 

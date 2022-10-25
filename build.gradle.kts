@@ -6,7 +6,6 @@ plugins {
     alias(deps.plugins.detekt)
     alias(deps.plugins.nexus.release)
     alias(deps.plugins.kotlin.serialization)
-    alias(deps.plugins.gradle.buildozer)
     `maven-publish`
     signing
 }

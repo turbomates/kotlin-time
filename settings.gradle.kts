@@ -13,7 +13,6 @@ dependencyResolutionManagement {
             version("exposed", "0.36.2")
             version("kotest", "5.3.2")
             version("valiktor_core", "0.12.0")
-            version("gradle_buildozer", "1.0.9")
 
             library("ktor_client_core", "io.ktor", "ktor-client-core").versionRef("ktor")
             library("ktor_server_content_negotiation", "io.ktor", "ktor-server-content-negotiation").versionRef("ktor")
@@ -29,7 +28,6 @@ dependencyResolutionManagement {
             library("detekt_formatting", "io.gitlab.arturbosch.detekt", "detekt-formatting").versionRef("detekt")
             plugin("nexus_release", "io.codearte.nexus-staging").versionRef("nexus_staging")
             plugin("kotlin_serialization", "org.jetbrains.kotlin.plugin.serialization").versionRef("kotlin")
-            plugin("gradle_buildozer", "com.faire.gradle.analyze").versionRef("gradle_buildozer")
             library("valiktor_core", "org.valiktor", "valiktor-core").versionRef("valiktor_core")
 
             bundle(

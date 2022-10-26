@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter
 
 fun Table.datetime(name: String): Column<OffsetDateTime> = registerColumn(name, UTCDateTimeColumn.INSTANCE)
 
-class UTCNow : Function<OffsetDateTime>(UTCDateTimeColumn.INSTANCE) {
+class CurrentTimestamp : Function<OffsetDateTime>(UTCDateTimeColumn.INSTANCE) {
     override fun toQueryBuilder(queryBuilder: QueryBuilder) = queryBuilder {
         +"CURRENT_TIMESTAMP"
     }

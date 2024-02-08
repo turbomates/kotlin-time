@@ -13,11 +13,7 @@ import java.time.ZoneOffset
 fun Query.andDateRange(range: DateTimeRange, expression: ExpressionWithColumnType<*>): Query {
     return apply {
         range.from?.let { andWhere { expression greaterEq it.queryValue(expression) } }
-        range.to?.let {
-            andWhere {
-                expression lessEq OffsetDateTime.of(it.toLocalDateTime(), ZoneOffset.MAX).queryValue(expression)
-            }
-        }
+        range.to?.let { andWhere { expression lessEq it.queryValue(expression) } }
     }
 }
 

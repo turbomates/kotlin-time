@@ -82,7 +82,6 @@ enum class PeriodType(val symbol: String) {
 
 class PeriodException(message: String) : Exception(message)
 
-@Serializer(forClass = Period::class)
 object PeriodSerializer : KSerializer<Period> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("Period")
 

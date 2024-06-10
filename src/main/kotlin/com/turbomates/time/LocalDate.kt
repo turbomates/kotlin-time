@@ -15,14 +15,13 @@ import java.time.format.DateTimeParseException
 fun DataConversion.Configuration.localDate() {
     convert<LocalDate> {
         decode { values ->
-            values.singleOrNull()?.let {
+            values.single().let {
                 try {
                     LocalDate.parse(it, dateFormat)
                 } catch (ex: DateTimeParseException) {
                     OffsetDateTime.parse(it, dateTimeFormat).toLocalDate()
                 }
             }
-            LocalDate.parse(values.singleOrNull())
         }
         encode { value ->
             listOf(value.format(dateFormat))
@@ -30,7 +29,6 @@ fun DataConversion.Configuration.localDate() {
     }
 }
 
-@Serializer(forClass = LocalDate::class)
 object LocalDateSerializer : KSerializer<LocalDate> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("LocalDate", PrimitiveKind.STRING)
 

@@ -8,7 +8,6 @@ import org.jetbrains.exposed.sql.andWhere
 import org.jetbrains.exposed.sql.javatime.JavaLocalDateColumnType
 import java.time.LocalDate
 import java.time.OffsetDateTime
-import java.time.ZoneOffset
 
 fun Query.andDateRange(range: DateTimeRange, expression: ExpressionWithColumnType<*>): Query {
     return apply {
@@ -19,6 +18,8 @@ fun Query.andDateRange(range: DateTimeRange, expression: ExpressionWithColumnTyp
 
 fun OffsetDateTime.queryValue(expression: ExpressionWithColumnType<*>): QueryParameter<*> {
     return if (expression.columnType is JavaLocalDateColumnType) {
-        QueryParameter<LocalDate>(toLocalDate(), expression.columnType)
-    } else QueryParameter(this, expression.columnType)
+        QueryParameter<LocalDate>(toLocalDate(), expression.columnType as JavaLocalDateColumnType)
+    } else {
+        QueryParameter(this, expression.columnType as UTCDateTimeColumn)
+    }
 }

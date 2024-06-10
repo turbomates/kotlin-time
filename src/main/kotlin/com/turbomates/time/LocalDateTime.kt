@@ -17,7 +17,7 @@ import java.time.format.DateTimeParseException
 fun DataConversion.Configuration.localDateTime() {
     convert<LocalDateTime> {
         decode { values ->
-            values.singleOrNull().let {
+            values.single().let {
                 try {
                     LocalDateTime.parse(it, dateTimeFormat)
                 } catch (ex: DateTimeParseException) {
@@ -31,7 +31,6 @@ fun DataConversion.Configuration.localDateTime() {
     }
 }
 
-@Serializer(forClass = LocalDateTime::class)
 object LocalDateTimeSerializer : KSerializer<LocalDateTime> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("LocalDateTime", PrimitiveKind.STRING)
 
@@ -44,7 +43,6 @@ object LocalDateTimeSerializer : KSerializer<LocalDateTime> {
     }
 }
 
-@Serializer(forClass = LocalTime::class)
 object LocalTimeSerializer : KSerializer<LocalTime> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("LocalTime", PrimitiveKind.STRING)
     private val df: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")

@@ -21,41 +21,28 @@ class CurrentTimestamp : Function<OffsetDateTime>(UTCDateTimeColumn.INSTANCE) {
 }
 
 @Suppress("MagicNumber")
-class UTCDateTimeColumn : ColumnType(), IDateColumnType {
+class UTCDateTimeColumn : ColumnType<OffsetDateTime>(), IDateColumnType {
     override val hasTimePart: Boolean = true
     private val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneOffset.UTC)
 
     override fun sqlType(): String = currentDialect.dataTypeProvider.dateTimeType()
 
-    override fun nonNullValueToString(value: Any): String {
-        val instant = when (value) {
-            is String -> return "'$value'"
-            is OffsetDateTime -> value
-            is Instant -> value
-            is java.sql.Date -> Instant.ofEpochMilli(value.time)
-            is java.sql.Timestamp -> Instant.ofEpochSecond(value.time / 1000, value.nanos.toLong())
-            else -> error("Unexpected value: $value of ${value::class.qualifiedName.orEmpty()}")
-        }
-
-        return "'${formatter.format(instant)}'"
+    override fun nonNullValueToString(value: OffsetDateTime): String {
+        return "'${formatter.format(value)}'"
     }
 
-    override fun valueFromDB(value: Any): Any = when (value) {
+    override fun valueFromDB(value: Any): OffsetDateTime? = when (value) {
         is OffsetDateTime -> value
         is java.sql.Date -> longToDateTime(value.time)
         is java.sql.Timestamp -> longToDateTime(value.time / 1000, value.nanos.toLong())
         is Int -> longToDateTime(value.toLong())
         is Long -> longToDateTime(value)
-        else -> super.valueFromDB(value)
+        else -> throw IllegalArgumentException("Unexpected value: $value of ${value::class.qualifiedName.orEmpty()}")
     }
 
-    override fun notNullValueToDB(value: Any): Any = when (value) {
-        is Instant -> java.sql.Timestamp.from(value)
-        is OffsetDateTime -> {
-            val instant = value.toInstant()
-            java.sql.Timestamp.from(instant)
-        }
-        else -> value
+    override fun notNullValueToDB(value: OffsetDateTime): Any {
+        val instant = value.toInstant()
+        return java.sql.Timestamp.from(instant)
     }
 
     private fun longToDateTime(millis: Long) = OffsetDateTime.ofInstant(Instant.ofEpochMilli(millis), ZoneOffset.UTC)

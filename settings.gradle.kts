@@ -1,17 +1,16 @@
 rootProject.name = "kotlin-time"
 include("src")
 
-enableFeaturePreview("VERSION_CATALOGS")
 dependencyResolutionManagement {
     versionCatalogs {
         create("deps") {
-            version("ktor", "2.0.3")
-            version("detekt", "1.21.0-RC2")
-            version("kotlin", "1.7.0")
-            version("kotlin_serialization_json", "1.3.1")
+            version("ktor", "2.3.11")
+            version("detekt", "1.23.6")
+            version("kotlin", "2.0.0")
+            version("kotlin_serialization_json", "1.7.0")
             version("nexus_staging", "0.30.0")
-            version("exposed", "0.36.2")
-            version("kotest", "5.3.2")
+            version("exposed", "0.51.1")
+            version("kotest", "5.7.2")
             version("valiktor_core", "0.12.0")
 
             library("ktor_client_core", "io.ktor", "ktor-client-core").versionRef("ktor")

@@ -18,7 +18,6 @@ import java.time.format.DateTimeParseException
 val nowUTC: OffsetDateTime
     get() = OffsetDateTime.now(ZoneOffset.UTC)
 
-@Serializer(forClass = OffsetDateTime::class)
 object OffsetDateTimeSerializer : KSerializer<OffsetDateTime> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("OffsetDateTime", PrimitiveKind.STRING)
 
@@ -34,7 +33,7 @@ object OffsetDateTimeSerializer : KSerializer<OffsetDateTime> {
 fun DataConversion.Configuration.offsetDateTime() {
     convert<OffsetDateTime> {
         decode { values ->
-            values.singleOrNull().let {
+            values.single().let {
                 try {
                     OffsetDateTime.parse(it, dateTimeFormat)
                 } catch (ex: DateTimeParseException) {

@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "com.github.turbomates"
-version = "0.1.1"
+version = System.getenv("RELEASE_VERSION") ?: "0.1.0"
 
 repositories {
     mavenCentral()

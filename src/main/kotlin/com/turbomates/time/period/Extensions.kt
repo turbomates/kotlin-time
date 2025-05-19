@@ -2,6 +2,7 @@ package com.turbomates.time.period
 
 import java.time.LocalDate
 import java.time.OffsetDateTime
+import kotlin.text.toLong
 
 fun OffsetDateTime.startOf(periodType: PeriodType): OffsetDateTime {
     return when (periodType) {
@@ -31,6 +32,37 @@ fun OffsetDateTime.startOf(periodType: PeriodType): OffsetDateTime {
             .withMinute(0)
             .withSecond(0)
             .withNano(0)
+    }
+}
+
+fun OffsetDateTime.endOf(periodType: PeriodType): OffsetDateTime {
+    return when (periodType) {
+        PeriodType.HOURS -> withMinute(59)
+            .withSecond(59)
+            .withNano(999_999_999)
+
+        PeriodType.DAYS -> withHour(23)
+            .withMinute(59)
+            .withSecond(59)
+            .withNano(999_999_999)
+
+        PeriodType.WEEKS -> plusDays(7 - dayOfWeek.value.toLong())
+            .withHour(23)
+            .withMinute(59)
+            .withSecond(59)
+            .withNano(999_999_999)
+
+        PeriodType.MONTHS -> withDayOfMonth(toLocalDate().lengthOfMonth())
+            .withHour(23)
+            .withMinute(59)
+            .withSecond(59)
+            .withNano(999_999_999)
+
+        PeriodType.YEARS -> withDayOfYear(toLocalDate().lengthOfYear())
+            .withHour(23)
+            .withMinute(59)
+            .withSecond(59)
+            .withNano(999_999_999)
     }
 }
 

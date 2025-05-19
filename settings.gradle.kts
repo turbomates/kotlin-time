@@ -6,10 +6,10 @@ dependencyResolutionManagement {
         create("deps") {
             version("ktor", "2.3.11")
             version("detekt", "1.23.6")
-            version("kotlin", "2.0.0")
-            version("kotlin_serialization_json", "1.7.0")
+            version("kotlin", "2.1.10")
+            version("kotlin_serialization_json", "1.8.1")
             version("nexus_staging", "0.30.0")
-            version("exposed", "0.51.1")
+            version("exposed", "0.53.0")
             version("kotest", "5.7.2")
             version("valiktor_core", "0.12.0")
 

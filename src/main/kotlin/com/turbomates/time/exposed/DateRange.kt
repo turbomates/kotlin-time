@@ -1,13 +1,15 @@
 package com.turbomates.time.exposed
 
 import com.turbomates.time.DateTimeRange
-import org.jetbrains.exposed.sql.ExpressionWithColumnType
-import org.jetbrains.exposed.sql.Query
-import org.jetbrains.exposed.sql.QueryParameter
-import org.jetbrains.exposed.sql.andWhere
-import org.jetbrains.exposed.sql.javatime.JavaLocalDateColumnType
 import java.time.LocalDate
 import java.time.OffsetDateTime
+import org.jetbrains.exposed.v1.core.ExpressionWithColumnType
+import org.jetbrains.exposed.v1.jdbc.Query
+import org.jetbrains.exposed.v1.core.QueryParameter
+import org.jetbrains.exposed.v1.core.greaterEq
+import org.jetbrains.exposed.v1.core.lessEq
+import org.jetbrains.exposed.v1.javatime.JavaLocalDateColumnType
+import org.jetbrains.exposed.v1.jdbc.andWhere
 
 fun Query.andDateRange(range: DateTimeRange, expression: ExpressionWithColumnType<*>): Query {
     return apply {

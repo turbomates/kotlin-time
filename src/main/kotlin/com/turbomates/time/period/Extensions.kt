@@ -2,7 +2,6 @@ package com.turbomates.time.period
 
 import java.time.LocalDate
 import java.time.OffsetDateTime
-import kotlin.text.toLong
 
 fun OffsetDateTime.startOf(periodType: PeriodType): OffsetDateTime {
     return when (periodType) {

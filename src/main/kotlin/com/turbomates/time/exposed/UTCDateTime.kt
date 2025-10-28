@@ -1,16 +1,16 @@
 package com.turbomates.time.exposed
 
-import org.jetbrains.exposed.sql.Column
-import org.jetbrains.exposed.sql.ColumnType
-import org.jetbrains.exposed.sql.Function
-import org.jetbrains.exposed.sql.IDateColumnType
-import org.jetbrains.exposed.sql.QueryBuilder
-import org.jetbrains.exposed.sql.Table
-import org.jetbrains.exposed.sql.vendors.currentDialect
 import java.time.Instant
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import org.jetbrains.exposed.v1.core.Column
+import org.jetbrains.exposed.v1.core.ColumnType
+import org.jetbrains.exposed.v1.core.Function
+import org.jetbrains.exposed.v1.core.IDateColumnType
+import org.jetbrains.exposed.v1.core.QueryBuilder
+import org.jetbrains.exposed.v1.core.Table
+import org.jetbrains.exposed.v1.core.vendors.currentDialect
 
 fun Table.datetime(name: String): Column<OffsetDateTime> = registerColumn(name, UTCDateTimeColumn.INSTANCE)
 

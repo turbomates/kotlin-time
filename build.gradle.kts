@@ -12,7 +12,7 @@ plugins {
     signing
 }
 
-group = "com.github.turbomates"
+group = "com.turbomates"
 version = System.getenv("RELEASE_VERSION") ?: "0.1.0"
 
 repositories {
@@ -81,13 +81,13 @@ publishing {
             pom {
                 packaging = "jar"
                 name.set("Time extensions")
-                url.set("https://github.com/turbomates/hoplite")
+                url.set("https://github.com/turbomates/kotlin-time")
                 description.set("Time extensions for kotlin stdlib and exposed")
 
                 licenses {
                     license {
                         name.set("MIT License")
-                        url.set("https://github.com/turbomates/hoplite/blob/main/LICENSE")
+                        url.set("https://github.com/turbomates/kotlin-time/blob/main/LICENSE")
                     }
                 }
 

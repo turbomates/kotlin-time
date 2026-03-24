@@ -9,7 +9,7 @@ dependencyResolutionManagement {
             version("kotlin", "2.2.20")
             version("kotlin_serialization_json", "1.9.0")
             version("nexus_staging", "2.0.0")
-            version("exposed", "1.0.0-rc-2")
+            version("exposed", "1.1.1")
             version("kotest", "6.0.0")
             version("valiktor_core", "0.12.0")
 

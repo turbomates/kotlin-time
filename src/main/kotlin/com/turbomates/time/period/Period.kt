@@ -59,11 +59,11 @@ data class Period(val number: Int, val periodType: PeriodType) {
         }
 
         private fun String.toPeriodType(): PeriodType {
-            return PeriodType.values()
+            return PeriodType.entries
                 .singleOrNull { periodType -> periodType.symbol == this }
                 ?: throw PeriodException(
                     "Incorrect period type: $this. " +
-                        "Period type can be only: ${PeriodType.values().map { it.symbol }}. "
+                        "Period type can be only: ${PeriodType.entries.map { it.symbol }}. "
                 )
         }
     }

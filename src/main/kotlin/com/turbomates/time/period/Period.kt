@@ -36,6 +36,14 @@ data class Period(val number: Int, val periodType: PeriodType) {
         return Range(periodEnd.minusPeriod(this), periodEnd)
     }
 
+    fun toDays(): Int = when (periodType) {
+        PeriodType.HOURS -> Math.ceilDiv(number, 24)
+        PeriodType.DAYS -> number
+        PeriodType.WEEKS -> Math.multiplyExact(number, 7)
+        PeriodType.MONTHS -> Math.multiplyExact(number, 30)
+        PeriodType.YEARS -> Math.multiplyExact(number, 365)
+    }
+
     override fun toString(): String {
         return "$number ${periodType.symbol}"
     }

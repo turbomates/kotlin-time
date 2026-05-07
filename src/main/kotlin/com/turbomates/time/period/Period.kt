@@ -39,9 +39,9 @@ data class Period(val number: Int, val periodType: PeriodType) {
     fun toDays(): Int = when (periodType) {
         PeriodType.HOURS -> Math.ceilDiv(number, 24)
         PeriodType.DAYS -> number
-        PeriodType.WEEKS -> number * 7
-        PeriodType.MONTHS -> number * 30
-        PeriodType.YEARS -> number * 365
+        PeriodType.WEEKS -> Math.multiplyExact(number, 7)
+        PeriodType.MONTHS -> Math.multiplyExact(number, 30)
+        PeriodType.YEARS -> Math.multiplyExact(number, 365)
     }
 
     override fun toString(): String {

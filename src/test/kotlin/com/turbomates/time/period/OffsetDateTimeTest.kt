@@ -18,6 +18,7 @@ class OffsetDateTimeTest {
             OffsetDateTime.of(2022, 7, 6, 22, 53, 0, 0, ZoneOffset.UTC).startOf(PeriodType.WEEKS)
         )
     }
+
     @Test
     fun `end of hour`() {
         assertEquals(
